@@ -24,4 +24,69 @@ Appointment.getAll = result => {
     });
 }
 
+Appointment.findByPatientID = (patientID, result) => {
+    let query = `SELECT * FROM appointment WHERE patientID = ${patientID}`;
+    sql.query(query, (err, res) => {
+        if(err){
+            console.log('Error: ', err);
+            result(null, err);
+            return;
+        }
+        console.log('Appointments: ', res);
+        result(null, res);
+    });
+}
+
+Appointment.findByID = (appointmentID, result) => {
+    let query = `SELECT * FROM appointment WHERE id = ${appointmentID}`;
+    sql.query(query, (err, res)=>{
+        if(err){
+            console.log('Error: ', err);
+            result(null, err);
+            return;
+        }
+        console.log('Appointment: ', res);
+        result(null, res);
+    });
+}
+
+Appointment.create = (newAppointment, result) => {
+    let query = `INSERT INTO appointment (patientID, startTime, endTime, date, doctorID, purpose) VALUES (${newAppointment.patientID}, '${newAppointment.startTime}', '${newAppointment.endTime}', '${newAppointment.date}', ${newAppointment.doctorID}, '${newAppointment.purpose}')`;
+    sql.query(query, (err, res)=>{
+        if(err){
+            console.log('Error: ', err);
+            result(null, err);
+            return;
+        }
+        console.log('Appointment: ', res);
+        result(null, res);
+    });
+}
+
+Appointment.updateByID = (appointmentID, appointment, result) => {
+    let query = `UPDATE appointment SET patientID = ${appointment.patientID}, startTime = '${appointment.startTime}', endTime = '${appointment.endTime}', date = '${appointment.date}', doctorID = ${appointment.doctorID}, purpose = '${appointment.purpose}' WHERE id = ${appointmentID}`;
+    sql.query(query, (err, res)=>{
+        if(err){
+            console.log('Error: ', err);
+            result(null, err);
+            return;
+        }
+        console.log('Appointment: ', res);
+        result(null, res);
+    });
+}
+
+Appointment.removeByID = (appointmentID, result) => {
+    let query = `DELETE FROM appointment WHERE id = ${appointmentID}`;
+    sql.query(query, (err, res)=>{
+        if(err){
+            console.log('Error: ', err);
+            result(null, err);
+            return;
+        }
+        console.log('Appointment: ', res);
+        result(null, res);
+    });
+}
+
 module.exports = Appointment;

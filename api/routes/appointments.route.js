@@ -5,50 +5,14 @@ const appointment = require('../controllers/appointment.controller');
 
 router.get('/', appointment.findAll);
 
-router.post('/', (req, res, next) => {
-    res.status(201).json({
-        message: 'Handling POST requests to /products',
-    });    
-});
+router.post('/', appointment.create);
 
-router.get('/user/:userId', (req, res, next) => {
-    const id = req.params.userId;
-    if(id === 'user'){
-        res.status(200).json({
-            message: 'This is the user appointments',
-            id: id
-        });
-    } else {
-        res.status(200).json({
-            message: 'You passed an ID'
-        });
-    }
-});
+router.get('/patient/:patientID', appointment.findByPatientID);
 
-router.get('/:appointmentId', (req, res, next) => {
-    const id = req.params.appointmentId;
-    if(id === 'special'){
-        res.status(200).json({
-            message: 'You discovered the special ID',
-            id: id
-        });
-    } else {
-        res.status(200).json({
-            message: 'You passed an ID'
-        });
-    }
-});
+router.get('/:appointmentID', appointment.findByID);
 
-router.patch('/:appointmentId', (req, res, next) => {
-    res.status(200).json({
-        message: 'Updated appointment!'
-    });
-});
+router.patch('/:appointmentID', appointment.update);
 
-router.delete('/:appointmentId', (req, res, next) => {
-    res.status(200).json({
-        message: 'Deleted appointment!'
-    });
-});
+router.delete('/:appointmentID', appointment.delete);
 
 module.exports = router;
