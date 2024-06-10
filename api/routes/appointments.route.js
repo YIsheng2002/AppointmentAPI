@@ -1,13 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-//const Product = require('../models/appointments');
+const appointment = require('../controllers/appointment.controller');
 
-router.get('/', (req, res, next) => {
-    res.status(200).json({
-        message: 'Handling GET requests to /appointments'
-    });
-});
+router.get('/', appointment.findAll);
 
 router.post('/', (req, res, next) => {
     res.status(201).json({
