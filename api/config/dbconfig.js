@@ -5,6 +5,6 @@ module.exports = {
 		host: '127.0.0.1',
 		username: 'root',
 		password: '',
-		database: 'appointment_api'
+		database: 'medical_application'
 	}
 };

@@ -12,18 +12,6 @@ exports.findAll = (req, res) => {
     });
 }
 
-exports.findByPatientID = (req, res) => {
-    Appointment.findByPatientID(req.params.patientID, (err, data) => {
-        if(err){
-            res.status(500).send({
-                message: err.message || 'Some error occurred while retrieving appointments.'
-            });
-        } else {
-            res.send(data);
-        }
-    });
-}
-
 exports.findByID = (req, res) => {
     Appointment.findByID(req.params.appointmentID, (err, data) => {
         if(err){

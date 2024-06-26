@@ -12,7 +12,7 @@ const Appointment = function(appointment){
 }
 
 Appointment.getAll = result => {
-    let query = 'SELECT * FROM appointment';
+    let query = 'SELECT * FROM appointment ORDER BY date ASC, startTime ASC';
     sql.query(query, (err, res) => {
         if(err){
             console.log('Error: ', err);
@@ -24,18 +24,6 @@ Appointment.getAll = result => {
     });
 }
 
-Appointment.findByPatientID = (patientID, result) => {
-    let query = `SELECT * FROM appointment WHERE patientID = ${patientID}`;
-    sql.query(query, (err, res) => {
-        if(err){
-            console.log('Error: ', err);
-            result(null, err);
-            return;
-        }
-        console.log('Appointments: ', res);
-        result(null, res);
-    });
-}
 
 Appointment.findByID = (appointmentID, result) => {
     let query = `SELECT * FROM appointment WHERE id = ${appointmentID}`;

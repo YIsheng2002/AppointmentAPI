@@ -7,8 +7,6 @@ router.get('/', appointment.findAll);
 
 router.post('/', appointment.create);
 
-router.get('/patient/:patientID', appointment.findByPatientID);
-
 router.get('/:appointmentID', appointment.findByID);
 
 router.patch('/:appointmentID', appointment.update);
