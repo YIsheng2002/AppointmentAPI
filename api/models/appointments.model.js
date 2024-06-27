@@ -12,7 +12,7 @@ const Appointment = function(appointment){
 }
 
 Appointment.getAll = result => {
-    let query = 'SELECT * FROM appointment ORDER BY date ASC, startTime ASC';
+    let query = 'SELECT * FROM appointments ORDER BY date ASC, startTime ASC';
     sql.query(query, (err, res) => {
         if(err){
             console.log('Error: ', err);
@@ -24,9 +24,8 @@ Appointment.getAll = result => {
     });
 }
 
-
 Appointment.findByID = (appointmentID, result) => {
-    let query = `SELECT * FROM appointment WHERE id = ${appointmentID}`;
+    let query = `SELECT * FROM appointments WHERE id = ${appointmentID}`;
     sql.query(query, (err, res)=>{
         if(err){
             console.log('Error: ', err);
@@ -39,7 +38,7 @@ Appointment.findByID = (appointmentID, result) => {
 }
 
 Appointment.create = (newAppointment, result) => {
-    let query = `INSERT INTO appointment (patientID, startTime, endTime, date, doctorID, purpose) VALUES (${newAppointment.patientID}, '${newAppointment.startTime}', '${newAppointment.endTime}', '${newAppointment.date}', ${newAppointment.doctorID}, '${newAppointment.purpose}')`;
+    let query = `INSERT INTO appointments (patientID, startTime, endTime, date, doctorID, purpose) VALUES (${newAppointment.patientID}, '${newAppointment.startTime}', '${newAppointment.endTime}', '${newAppointment.date}', ${newAppointment.doctorID}, '${newAppointment.purpose}')`;
     sql.query(query, (err, res)=>{
         if(err){
             console.log('Error: ', err);
@@ -52,7 +51,7 @@ Appointment.create = (newAppointment, result) => {
 }
 
 Appointment.updateByID = (appointmentID, appointment, result) => {
-    let query = `UPDATE appointment SET patientID = ${appointment.patientID}, startTime = '${appointment.startTime}', endTime = '${appointment.endTime}', date = '${appointment.date}', doctorID = ${appointment.doctorID}, purpose = '${appointment.purpose}' WHERE id = ${appointmentID}`;
+    let query = `UPDATE appointments SET patientID = ${appointment.patientID}, startTime = '${appointment.startTime}', endTime = '${appointment.endTime}', date = '${appointment.date}', doctorID = ${appointment.doctorID}, purpose = '${appointment.purpose}' WHERE id = ${appointmentID}`;
     sql.query(query, (err, res)=>{
         if(err){
             console.log('Error: ', err);
@@ -65,7 +64,7 @@ Appointment.updateByID = (appointmentID, appointment, result) => {
 }
 
 Appointment.removeByID = (appointmentID, result) => {
-    let query = `DELETE FROM appointment WHERE id = ${appointmentID}`;
+    let query = `DELETE FROM appointments WHERE id = ${appointmentID}`;
     sql.query(query, (err, res)=>{
         if(err){
             console.log('Error: ', err);
